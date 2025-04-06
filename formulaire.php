@@ -46,7 +46,7 @@ require 'vendor/autoload.php';
 
 $client = new Google_Client();// crée un objet avec la class Google_Client
 $client->setClientId('81770474473-n3jsva7qhgdoblhoudmsjvi4v2ati7kj.apps.googleusercontent.com'); //Id donner sur le site de google
-$client->setClientSecret('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');// code secret donner sur le site de google 
+$client->setClientSecret('');// code secret donner sur le site de google 
 $client->setRedirectUri('http://localhost/SIte-web-pokemon--main/Site-pokemon--page-2-et-filtre-/callback2.php'); //redirige la personne vers la page callback
 $client->addScope('email');//demande a google l'accés au mail 
 $client->addScope('profile');//demande a google l'accés au profil cad pseudo et pp

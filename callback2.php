@@ -4,7 +4,7 @@ require 'vendor/autoload.php'; // charge les classe des bibiliothèque installé
 session_start(); //crée une session coter serveur 
 $client = new Google_Client(); //recrée l'objet avec la class Google_Client
 $client->setClientId('81770474473-n3jsva7qhgdoblhoudmsjvi4v2ati7kj.apps.googleusercontent.com'); //identifient donner sur le site de google
-$client->setClientSecret('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');//code secret fournit par google
+$client->setClientSecret('');//code secret fournit par google
 $client->setRedirectUri('http://localhost/SIte-web-pokemon--main/Site-pokemon--page-2-et-filtre-/callback2.php');//permet a google de vérifier qu'on a été rediriger vers la bonne page
 
 if (isset($_GET['code'])) { //verifie l'existance d'un code dans l'url 
