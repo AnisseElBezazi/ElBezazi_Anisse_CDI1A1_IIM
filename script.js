@@ -2,7 +2,7 @@
 
 async function CartesPokemon() {
     const container = document.querySelector('.cartes2');
-      const reponse = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1300');//J'envoie une requete a l'api pour avoir une reponse brute
+      const reponse = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100');//J'envoie une requete a l'api pour avoir une reponse brute
       const Api1 = await reponse.json(); // Je met la reponse en json 
   
       for (const pokemon of Api1["results"]) { //pour chaque element de la liste results de l'Api je le stock dans la variable pokemon et fait les commande qui suivent 
@@ -65,6 +65,25 @@ async function CartesPokemon() {
             <div class="non-favoris"><img src="image/coeur-vide.png" alt="coeur-vide"></div>
             </div>
         `;
+
+        /*Favoris*/
+
+const cartes=document.querySelectorAll('.carte');
+
+cartes.forEach(carte => {
+  const nonFavoris = carte.querySelector('.non-favoris img'); /*Pour chaque carte on selectionne l'image de la class non-favoris */
+
+  nonFavoris.addEventListener('click', function() { /*Lorsqu'on click sur un coeur  */
+      
+      if (nonFavoris.getAttribute('src') === 'image/coeur-vide.png') {/*Si le src de ma class nonFavoris est l'image de coeur vide */
+          nonFavoris.setAttribute('src', 'image/coeur-plein.png'); /*Alors je modifie le src de ma class par une image de coeur plein   */
+          nonFavoris.classList.add('opaciterMax'); /*et je met l'opacité au max pour que celui ci ne soit pas affecter par le hover */
+      } else {
+          nonFavoris.setAttribute('src', 'image/coeur-vide.png');  /*sinon je remplace le src par une image de coeur vide */
+          nonFavoris.classList.remove('opaciterMax');/*j'enleve l'opacité au max par default pour que le coeur vide apparait seulement quand on passe au dessus d'une carte */
+      }
+  });
+});
 }
 }
 
@@ -80,7 +99,7 @@ tabs.forEach(tab=>{//pour chaque bouton
     tabs.forEach(tab=>tab.classList.remove('active-filtre')); // je retire le background bleu a tout les bouton
     tab.classList.add('active-filtre');// Rajoute le fon
     let type = tab.getAttribute('type');//je vais chercher se qui est stocker dans type dans le html pour le tab clicker
-    let cartes = document.querySelectorAll('.carte'); //crée une liste avec toutes les cartes 
+    const cartes = document.querySelectorAll('.carte'); //crée une liste avec toutes les cartes 
     cartes.forEach(carte=>{ 
       carte.classList.remove('disapear');//je fait apparaitre tout les cartes en enlevant le display none 
       if (type==='All') return;// si le tab cliquer est All j'arrete la boucle des cartes 
@@ -91,6 +110,9 @@ tabs.forEach(tab=>{//pour chaque bouton
     });
   });
 });
+
+
+
 
 
 
@@ -152,25 +174,6 @@ Croix.addEventListener('click', function() {/*Lorsque on click sur la croix */
 });
 
 
-
-/*Favoris*/
-
-
-
-cartes.forEach(carte => {
-    const nonFavoris = carte.querySelector('.non-favoris img'); /*Pour chaque carte on selectionne l'image de la class non-favoris */
-
-    nonFavoris.addEventListener('click', function() { /*Lorsqu'on click sur un coeur  */
-        
-        if (nonFavoris.getAttribute('src') === 'image/coeur-vide.png') {/*Si le src de ma class nonFavoris est l'image de coeur vide */
-            nonFavoris.setAttribute('src', 'image/coeur-plein.png'); /*Alors je modifie le src de ma class par une image de coeur plein   */
-            nonFavoris.classList.add('opaciterMax'); /*et je met l'opacité au max pour que celui ci ne soit pas affecter par le hover */
-        } else {
-            nonFavoris.setAttribute('src', 'image/coeur-vide.png');  /*sinon je remplace le src par une image de coeur vide */
-            nonFavoris.classList.remove('opaciterMax');/*j'enleve l'opacité au max par default pour que le coeur vide apparait seulement quand on passe au dessus d'une carte */
-        }
-    });
-});
 
 
 /*Stats carte */
